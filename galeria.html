@@ -1,1 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Galería - SATORY977</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background-image: url('https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NTlyN3IzOGV3eXlqeXQ3Z285NWFqdDJ1dGNsOWJ4ODhrYWRzdzJ0YiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l3V0yA9zHe5m29sxW/giphy.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== HEADER CON TÍTULO CLICKEABLE ===== */
+        .gallery-header {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 20px 0 30px 0;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .gallery-header h1 {
+            display: inline-block;
+            color: #fff;
+            font-size: 1.5em;
+            letter-spacing: 4px;
+            cursor: pointer;
+            text-shadow: 
+                2px 2px 0 #00ff00,
+                -2px -2px 0 #ff00ff,
+                0 0 30px rgba(0, 255, 0, 0.2);
+            animation: glitch 3s infinite;
+            transition: 0.3s;
+            padding: 10px 25px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+        }
+
+        .gallery-header h1:hover {
+            border-color: rgba(0, 255, 0, 0.2);
+            background: rgba(0, 255, 0, 0.05);
+            text-shadow: 
+                2px 2px 0 #00ff00,
+                -2px -2px 0 #ff00ff,
+                0 0 50px rgba(0, 255, 0, 0.3);
+        }
+
+        .gallery-header h1::after {
+            content: ' ☠';
+            color: #ff00ff;
+            opacity: 0.3;
+            animation: skullPulse 1s ease-in-out infinite;
+        }
+
+        .gallery-header .subtitle {
+            color: #444;
+            font-size: 0.6em;
+            letter-spacing: 3px;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        .gallery-header .subtitle span {
+            color: #00ff00;
+            opacity: 0.3;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+        }
+
+        @keyframes skullPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ===== GALERÍA TIPO INSTAGRAM ===== */
+        .gallery-container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 0, 0.08);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .gallery-item:hover {
+            border-color: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(30%) contrast(110%) brightness(0.85);
+            transition: 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(5%) contrast(115%) brightness(0.95);
+        }
+
+        .gallery-item .info {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 255, 0, 0.05);
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .gallery-item .info .title {
+            color: #aaa;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+        }
+
+        .gallery-item .info .title::before {
+            content: '◆ ';
+            color: #00ff00;
+            opacity: 0.2;
+        }
+
+        .gallery-item .info .year {
+            color: #444;
+            font-size: 0.65em;
+            letter-spacing: 1px;
+        }
+
+        .gallery-item .info .likes {
+            color: #ff00ff;
+            font-size: 0.6em;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        /* ===== LOADER ===== */
+        .loader {
+            text-align: center;
+            padding: 30px 0;
+            color: #333;
+            font-size: 0.8em;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loader span {
+            color: #00ff00;
+            opacity: 0.3;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .loader .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 255, 0, 0.1);
+            border-top-color: #00ff00;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 0, 0.4);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .gallery-header h1 {
+                font-size: 1em;
+                letter-spacing: 2px;
+                padding: 8px 15px;
+            }
+
+            .gallery-header .subtitle {
+                font-size: 0.5em;
+                letter-spacing: 2px;
+            }
+
+            .gallery-item {
+                border-radius: 8px;
+                margin-bottom: 15px;
+            }
+
+            .gallery-item .info {
+                padding: 12px 15px;
+            }
+
+            .gallery-item .info .title {
+                font-size: 0.65em;
+                letter-spacing: 1px;
+            }
+
+            .gallery-item .info .year {
+                font-size: 0.55em;
+            }
+
+            .gallery-item .info .likes {
+                font-size: 0.5em;
+            }
+
+            .loader {
+                font-size: 0.6em;
+                padding: 20px 0;
+            }
+
+            .loader .spinner {
+                width: 15px;
+                height: 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .gallery-header h1 {
+                font-size: 0.8em;
+                letter-spacing: 1px;
+                padding: 6px 12px;
+            }
+
+            .gallery-item .info {
+                padding: 10px 12px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+            }
+
+            .gallery-item .info .title {
+                font-size: 0.6em;
+            }
+
+            .gallery-item .info .year {
+                font-size: 0.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER CON TÍTULO CLICKEABLE ===== -->
+    <header class="gallery-header">
+        <h1 onclick="window.location.href='index.html'">📷 GALERÍA</h1>
+        <div class="subtitle">
+            <span>⚡</span> OBRAS DE SATORY977 <span>⚡</span>
+        </div>
+    </header>
+
+    <!-- ===== GALERÍA ===== -->
+    <div class="gallery-container" id="gallery">
+        <!-- Las imágenes se cargan con JavaScript -->
+    </div>
+
+    <!-- ===== LOADER ===== -->
+    <div class="loader" id="loader">
+        <span class="spinner"></span>
+        <span>CARGANDO MÁS OBRAS</span>
+        <span>⚡</span>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ===== DATOS DE LA GALERÍA =====
+        // Puedes agregar todas las imágenes que quieras aquí
+        const obras = [
+            { 
+                url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/727259170_18015793940889800_8209384508341054356_n.webp?_nc_cat=101&ig_cache_key=MzkyMTgwNTYwNTY5Mzk2MjUyMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=UJCmrKn4dMwQ7kNvwHzZkWv&_nc_oc=AdpFx7nz8AlhS3WE01rcOIX--sBumIbfq-1QjUvSOAJTccGioDhxDikmYozjyFrfaLNpJ0IVp99XUYRK6g2ngn9b&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af_sntCPk0q0WBfi3uyEaJLucr-oxECekB6qyfNIW0VpOA&oe=6A3AA01A', 
+                title: '"Caos y Orden"', 
+                year: '2024',
+                likes: Math.floor(Math.random() * 100) + 20
+            },
+            { 
+                url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/654048626_18092714768327475_9058618948998800194_n.webp?_nc_cat=103&ig_cache_key=MzM2Mjg4MjkyODk2NTc2OTEyNw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=34euCd2CyR0Q7kNvwE3Tkaw&_nc_oc=AdnRqxJOCnGJ_6pT3DIL4tTh1JigvPCOwQYfQvAS4BtvWgXfWgE1pyWntb7v3_rJjwk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af8NspVhwICiMoVC4_RLBKGzZ1NQpCsh9W3cF7-Bs8-btA&oe=6A3AAF2A', 
+                title: '"Eternal Chaos"', 
+                year: '2023',
+                likes: Math.floor(Math.random() * 100) + 20
+            },
+            { 
+                url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/486662043_18116720629359848_2472158068067822770_n.webp?_nc_cat=105&ig_cache_key=MzU3MTcyODUyNDkyODYwNzk2Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=LlObJ5yZMWMQ7kNvwGlP4RO&_nc_oc=AdmQjnYFOGsMTHg6s4fZv7iGgiYLbHwP_5WoyOVcGvLKHyqT-nAAk4G4ekBvY1WN4l4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af-Y9_t-G3Qvqswq_3fqCj1sJXmsO-hAdKdi0_GeYf1iJg&oe=6A3A9FE2', 
+                title: '"Neon Apocalypse"', 
+                year: '2025',
+                likes: Math.floor(Math.random() * 100) + 20
+            }
+        ];
+
+        // Más obras para scroll infinito (puedes agregar más)
+        const obrasExtra = [
+            { url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/727259170_18015793940889800_8209384508341054356_n.webp?_nc_cat=101&ig_cache_key=MzkyMTgwNTYwNTY5Mzk2MjUyMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=UJCmrKn4dMwQ7kNvwHzZkWv&_nc_oc=AdpFx7nz8AlhS3WE01rcOIX--sBumIbfq-1QjUvSOAJTccGioDhxDikmYozjyFrfaLNpJ0IVp99XUYRK6g2ngn9b&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af_sntCPk0q0WBfi3uyEaJLucr-oxECekB6qyfNIW0VpOA&oe=6A3AA01A', title: '"Sueños Digitales"', year: '2024', likes: Math.floor(Math.random() * 100) + 20 },
+            { url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/654048626_18092714768327475_9058618948998800194_n.webp?_nc_cat=103&ig_cache_key=MzM2Mjg4MjkyODk2NTc2OTEyNw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=34euCd2CyR0Q7kNvwE3Tkaw&_nc_oc=AdnRqxJOCnGJ_6pT3DIL4tTh1JigvPCOwQYfQvAS4BtvWgXfWgE1pyWntb7v3_rJjwk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af8NspVhwICiMoVC4_RLBKGzZ1NQpCsh9W3cF7-Bs8-btA&oe=6A3AAF2A', title: '"Cibernética"', year: '2024', likes: Math.floor(Math.random() * 100) + 20 },
+            { url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/486662043_18116720629359848_2472158068067822770_n.webp?_nc_cat=105&ig_cache_key=MzU3MTcyODUyNDkyODYwNzk2Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=LlObJ5yZMWMQ7kNvwGlP4RO&_nc_oc=AdmQjnYFOGsMTHg6s4fZv7iGgiYLbHwP_5WoyOVcGvLKHyqT-nAAk4G4ekBvY1WN4l4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af-Y9_t-G3Qvqswq_3fqCj1sJXmsO-hAdKdi0_GeYf1iJg&oe=6A3A9FE2', title: '"Realidad Virtual"', year: '2025', likes: Math.floor(Math.random() * 100) + 20 }
+        ];
+
+        // Combinar todas las obras
+        let todasLasObras = [...obras, ...obrasExtra, ...obrasExtra, ...obrasExtra];
+        let indiceActual = 0;
+        const gallery = document.getElementById('gallery');
+        const loader = document.getElementById('loader');
+        let cargando = false;
+
+        function cargarObras() {
+            if (cargando) return;
+            cargando = true;
+            loader.style.display = 'block';
+
+            setTimeout(() => {
+                const itemsACargar = 3;
+                for (let i = 0; i < itemsACargar; i++) {
+                    const obra = todasLasObras[indiceActual % todasLasObras.length];
+                    indiceActual++;
+
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.innerHTML = `
+                        <img src="${obra.url}" alt="${obra.title}" loading="lazy">
+                        <div class="info">
+                            <span class="title">${obra.title}</span>
+                            <span class="year">${obra.year}</span>
+                            <span class="likes">❤️ ${obra.likes}</span>
+                        </div>
+                    `;
+                    gallery.appendChild(item);
+                }
+
+                cargando = false;
+                loader.style.display = 'none';
+            }, 600);
+        }
+
+        // Cargar primeras obras
+        cargarObras();
+
+        // ===== SCROLL INFINITO =====
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 600) {
+                cargarObras();
+            }
+        });
+
+        // ===== EFECTO MATRIX (canvas) =====
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.zIndex = '0';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.opacity = '0.06';
+        document.body.prepend(canvas);
+
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        console.log('📷 GALERÍA DE SATORY977');
+        console.log('💀 SCROLL INFINITO ACTIVADO');
+    </script>
+</body>
+</html>
