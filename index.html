@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ş̴̙̙̬̹͚̦̯͖̫̭̲̼̰̇̆͌̓́̈͛́͌̌̊̐͂̒̒̾̑̿͘͝͠ą̵̤͎̬͍̖̍͊̓̅͋̎̀̇͗̕͝t̸̢̟̫̥͈̝̘̙̽̾̿̎̏́͂̀̃̓́̒̾̏͋̈̾̔̀͑̕͘͝ò̵͖̩̥̻̣͎̳̱̤͚̖͌̓̉͐̄̍̎̀̂́̃̉̄̉̄̓̑̂̓̈́̀͗̂̐͘̚͜͝͝͠ͅr̶̢̢̨̛̰̺͎̩͍̰̱̯͔͓̳̩͙̯̦̃́͛̀̓̈́̈́͆́̓̐̑͂̍̕͜͝ͅẙ̵̨̨̹̮̲͕̟͔̜̲͇̖̲͙͍͉̩̥̹̼̝̐͊͠9̵̯̜͖̱͖̠̠̗̞̲̼̣͍̭̝̏̈̅͒̈́̐̍͂̀̓̓̍̽͐̐̚͠͠ͅ7̴̢̡̳̳̤͔̬͕͇̞͇͙̞͔̤̪̠̞̝͓̲͚̬͖͙̪̠̭̫̊̏͜7̵̧͚̣̙̳̻̥̻͔̲̲͕̀͑̊͒̃͛͛̔̂̈́̇̈́̆̾̈̐̀̂̚͝͝</title>
+    <title>Galería - SATORY977</title>
     
     <style>
         * {
@@ -21,13 +21,10 @@
             min-height: 100vh;
             font-family: 'Courier New', monospace;
             color: #00ff00;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow-x: hidden;
+            padding: 20px;
         }
 
-        /* Overlay más transparente para que se vea el GIF */
         body::before {
             content: '';
             position: fixed;
@@ -35,45 +32,65 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.75);
             z-index: 0;
             pointer-events: none;
         }
 
-        /* ===== MENÚ CENTRAL TRANSPARENTE ===== */
-        .menu-container {
+        /* ===== HEADER CON TÍTULO CLICKEABLE ===== */
+        .gallery-header {
             position: relative;
             z-index: 1;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 255, 0, 0.2);
-            border-radius: 12px;
-            padding: 40px 50px;
-            max-width: 450px;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            box-shadow: 
-                0 0 60px rgba(0, 255, 0, 0.05),
-                inset 0 0 60px rgba(0, 255, 0, 0.02);
             text-align: center;
-            transition: 0.3s;
-        }
-
-        .menu-container:hover {
-            border-color: rgba(0, 255, 0, 0.3);
-            box-shadow: 0 0 80px rgba(0, 255, 0, 0.08);
-        }
-
-        .menu-container h1 {
-            color: #fff;
-            font-size: 1.2em;
-            letter-spacing: 3px;
+            padding: 20px 0 30px 0;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.08);
             margin-bottom: 30px;
+        }
+
+        .gallery-header h1 {
+            display: inline-block;
+            color: #fff;
+            font-size: 1.5em;
+            letter-spacing: 4px;
+            cursor: pointer;
             text-shadow: 
                 2px 2px 0 #00ff00,
                 -2px -2px 0 #ff00ff,
                 0 0 30px rgba(0, 255, 0, 0.2);
             animation: glitch 3s infinite;
-            word-break: break-word;
+            transition: 0.3s;
+            padding: 10px 25px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+        }
+
+        .gallery-header h1:hover {
+            border-color: rgba(0, 255, 0, 0.2);
+            background: rgba(0, 255, 0, 0.05);
+            text-shadow: 
+                2px 2px 0 #00ff00,
+                -2px -2px 0 #ff00ff,
+                0 0 50px rgba(0, 255, 0, 0.3);
+        }
+
+        .gallery-header h1::after {
+            content: ' ☠';
+            color: #ff00ff;
+            opacity: 0.3;
+            animation: skullPulse 1s ease-in-out infinite;
+        }
+
+        .gallery-header .subtitle {
+            color: #444;
+            font-size: 0.6em;
+            letter-spacing: 3px;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        .gallery-header .subtitle span {
+            color: #00ff00;
+            opacity: 0.3;
         }
 
         @keyframes glitch {
@@ -84,111 +101,119 @@
             80% { transform: translate(2px, 2px); }
         }
 
-        .menu-container h1::after {
-            content: ' ☠';
-            color: #ff00ff;
-            opacity: 0.3;
-            animation: skullPulse 1s ease-in-out infinite;
-        }
-
         @keyframes skullPulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
 
-        /* ===== ENLACES DEL MENÚ ===== */
-        .menu-links {
-            list-style: none;
-            margin: 25px 0 30px 0;
+        /* ===== GALERÍA TIPO INSTAGRAM ===== */
+        .gallery-container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .menu-links li {
-            margin-bottom: 8px;
+        .gallery-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 0, 0.08);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: 0.4s ease;
+            backdrop-filter: blur(5px);
         }
 
-        .menu-links li a {
+        .gallery-item:hover {
+            border-color: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
             display: block;
+            filter: grayscale(30%) contrast(110%) brightness(0.85);
+            transition: 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(5%) contrast(115%) brightness(0.95);
+        }
+
+        .gallery-item .info {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 255, 0, 0.05);
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .gallery-item .info .title {
             color: #aaa;
-            text-decoration: none;
-            font-size: 0.85em;
-            letter-spacing: 2px;
-            padding: 12px 20px;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
+            font-size: 0.75em;
             text-transform: uppercase;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .menu-links li a:hover {
-            color: #00ff00;
-            border-color: rgba(0, 255, 0, 0.3);
-            background: rgba(0, 255, 0, 0.08);
-            text-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
-        }
-
-        .menu-links li a.active {
-            color: #00ff00;
-            border-color: rgba(255, 0, 255, 0.25);
-            background: rgba(255, 0, 255, 0.06);
-            text-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
-        }
-
-        .menu-links li a::before {
-            content: '☠ ';
-            opacity: 0.3;
-            transition: 0.3s;
-        }
-
-        .menu-links li a:hover::before {
-            opacity: 1;
-            color: #ff00ff;
-        }
-
-        .menu-links li a.active::before {
-            content: '💀 ';
-            opacity: 1;
-        }
-
-        /* ===== SEPARADOR ===== */
-        .menu-divider {
-            border: none;
-            border-top: 1px solid rgba(0, 255, 0, 0.1);
-            margin: 15px 0;
-        }
-
-        /* ===== RELOJ EN EL MENÚ ===== */
-        .menu-clock {
-            margin-top: 10px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 255, 0, 0.1);
-        }
-
-        .menu-clock .time {
-            font-size: 1.4em;
-            color: #00ff00;
-            text-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
-            letter-spacing: 3px;
+            letter-spacing: 1.5px;
             font-weight: bold;
         }
 
-        .menu-clock .date {
-            font-size: 0.55em;
-            color: #888;
-            margin-top: 5px;
-            letter-spacing: 2px;
-        }
-
-        .menu-clock .counter {
-            font-size: 0.5em;
-            color: #555;
-            margin-top: 10px;
-            letter-spacing: 2px;
-        }
-
-        .menu-clock .counter span {
+        .gallery-item .info .title::before {
+            content: '◆ ';
             color: #00ff00;
-            opacity: 0.4;
+            opacity: 0.2;
+        }
+
+        .gallery-item .info .year {
+            color: #444;
+            font-size: 0.65em;
+            letter-spacing: 1px;
+        }
+
+        .gallery-item .info .likes {
+            color: #ff00ff;
+            font-size: 0.6em;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        /* ===== LOADER ===== */
+        .loader {
+            text-align: center;
+            padding: 30px 0;
+            color: #333;
+            font-size: 0.8em;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loader span {
+            color: #00ff00;
+            opacity: 0.3;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .loader .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 255, 0, 0.1);
+            border-top-color: #00ff00;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* ===== SCROLLBAR ===== */
@@ -212,101 +237,177 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
-            .menu-container {
-                padding: 30px 25px;
-                margin: 20px;
+            body {
+                padding: 10px;
+            }
+
+            .gallery-header h1 {
+                font-size: 1em;
+                letter-spacing: 2px;
+                padding: 8px 15px;
+            }
+
+            .gallery-header .subtitle {
+                font-size: 0.5em;
+                letter-spacing: 2px;
+            }
+
+            .gallery-item {
                 border-radius: 8px;
-                background: rgba(0, 0, 0, 0.55);
+                margin-bottom: 15px;
             }
 
-            .menu-container h1 {
-                font-size: 0.9em;
-                letter-spacing: 2px;
+            .gallery-item .info {
+                padding: 12px 15px;
             }
 
-            .menu-links li a {
-                font-size: 0.7em;
-                padding: 10px 15px;
-                letter-spacing: 1.5px;
+            .gallery-item .info .title {
+                font-size: 0.65em;
+                letter-spacing: 1px;
             }
 
-            .menu-clock .time {
-                font-size: 1.1em;
-                letter-spacing: 2px;
+            .gallery-item .info .year {
+                font-size: 0.55em;
             }
 
-            .menu-clock .date {
-                font-size: 0.45em;
+            .gallery-item .info .likes {
+                font-size: 0.5em;
+            }
+
+            .loader {
+                font-size: 0.6em;
+                padding: 20px 0;
+            }
+
+            .loader .spinner {
+                width: 15px;
+                height: 15px;
             }
         }
 
         @media (max-width: 400px) {
-            .menu-container {
-                padding: 20px 15px;
-                margin: 10px;
-                background: rgba(0, 0, 0, 0.6);
-            }
-
-            .menu-container h1 {
-                font-size: 0.7em;
-            }
-
-            .menu-links li a {
-                font-size: 0.6em;
-                padding: 8px 12px;
+            .gallery-header h1 {
+                font-size: 0.8em;
                 letter-spacing: 1px;
+                padding: 6px 12px;
             }
 
-            .menu-clock .time {
-                font-size: 0.9em;
+            .gallery-item .info {
+                padding: 10px 12px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+            }
+
+            .gallery-item .info .title {
+                font-size: 0.6em;
+            }
+
+            .gallery-item .info .year {
+                font-size: 0.5em;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== MENÚ CENTRAL TRANSPARENTE ===== -->
-    <div class="menu-container">
-        <h1>SATORY 977</h1>
-
-        <ul class="menu-links">
-            <li><a href="#" class="active">Inicio</a></li>
-            <li><a href="satory977/galeria.html">📷 Galería</a></li>
-            <li><a href="#">Sobre Mí</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-
-        <!-- ===== RELOJ ===== -->
-        <div class="menu-clock">
-            <div class="time" id="clock">00:00:00</div>
-            <div class="date" id="date">LOADING...</div>
-            <div class="counter">VISITAS: <span id="visitorCounter">0</span></div>
+    <!-- ===== HEADER CON TÍTULO CLICKEABLE ===== -->
+    <header class="gallery-header">
+        <h1 onclick="window.location.href='index.html'">📷 GALERÍA</h1>
+        <div class="subtitle">
+            <span>⚡</span> OBRAS DE SATORY977 <span>⚡</span>
         </div>
+    </header>
+
+    <!-- ===== GALERÍA ===== -->
+    <div class="gallery-container" id="gallery">
+        <!-- Las imágenes se cargan con JavaScript -->
+    </div>
+
+    <!-- ===== LOADER ===== -->
+    <div class="loader" id="loader">
+        <span class="spinner"></span>
+        <span>CARGANDO MÁS OBRAS</span>
+        <span>⚡</span>
     </div>
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        // ===== RELOJ =====
-        function updateClock() {
-            const now = new Date();
-            const time = now.toTimeString().split(' ')[0];
-            const date = now.toLocaleDateString('es-ES', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            document.getElementById('clock').textContent = time;
-            document.getElementById('date').textContent = date.toUpperCase();
-        }
-        updateClock();
-        setInterval(updateClock, 1000);
+        // ===== DATOS DE LA GALERÍA =====
+        // Puedes agregar todas las imágenes que quieras aquí
+        const obras = [
+            { 
+                url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/727259170_18015793940889800_8209384508341054356_n.webp?_nc_cat=101&ig_cache_key=MzkyMTgwNTYwNTY5Mzk2MjUyMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=UJCmrKn4dMwQ7kNvwHzZkWv&_nc_oc=AdpFx7nz8AlhS3WE01rcOIX--sBumIbfq-1QjUvSOAJTccGioDhxDikmYozjyFrfaLNpJ0IVp99XUYRK6g2ngn9b&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af_sntCPk0q0WBfi3uyEaJLucr-oxECekB6qyfNIW0VpOA&oe=6A3AA01A', 
+                title: '"Caos y Orden"', 
+                year: '2024',
+                likes: Math.floor(Math.random() * 100) + 20
+            },
+            { 
+                url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/654048626_18092714768327475_9058618948998800194_n.webp?_nc_cat=103&ig_cache_key=MzM2Mjg4MjkyODk2NTc2OTEyNw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=34euCd2CyR0Q7kNvwE3Tkaw&_nc_oc=AdnRqxJOCnGJ_6pT3DIL4tTh1JigvPCOwQYfQvAS4BtvWgXfWgE1pyWntb7v3_rJjwk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af8NspVhwICiMoVC4_RLBKGzZ1NQpCsh9W3cF7-Bs8-btA&oe=6A3AAF2A', 
+                title: '"Eternal Chaos"', 
+                year: '2023',
+                likes: Math.floor(Math.random() * 100) + 20
+            },
+            { 
+                url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/486662043_18116720629359848_2472158068067822770_n.webp?_nc_cat=105&ig_cache_key=MzU3MTcyODUyNDkyODYwNzk2Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=LlObJ5yZMWMQ7kNvwGlP4RO&_nc_oc=AdmQjnYFOGsMTHg6s4fZv7iGgiYLbHwP_5WoyOVcGvLKHyqT-nAAk4G4ekBvY1WN4l4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af-Y9_t-G3Qvqswq_3fqCj1sJXmsO-hAdKdi0_GeYf1iJg&oe=6A3A9FE2', 
+                title: '"Neon Apocalypse"', 
+                year: '2025',
+                likes: Math.floor(Math.random() * 100) + 20
+            }
+        ];
 
-        // ===== CONTADOR =====
-        document.getElementById('visitorCounter').textContent = Math.floor(Math.random() * 1000) + 100;
+        // Más obras para scroll infinito (puedes agregar más)
+        const obrasExtra = [
+            { url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/727259170_18015793940889800_8209384508341054356_n.webp?_nc_cat=101&ig_cache_key=MzkyMTgwNTYwNTY5Mzk2MjUyMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=UJCmrKn4dMwQ7kNvwHzZkWv&_nc_oc=AdpFx7nz8AlhS3WE01rcOIX--sBumIbfq-1QjUvSOAJTccGioDhxDikmYozjyFrfaLNpJ0IVp99XUYRK6g2ngn9b&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af_sntCPk0q0WBfi3uyEaJLucr-oxECekB6qyfNIW0VpOA&oe=6A3AA01A', title: '"Sueños Digitales"', year: '2024', likes: Math.floor(Math.random() * 100) + 20 },
+            { url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/654048626_18092714768327475_9058618948998800194_n.webp?_nc_cat=103&ig_cache_key=MzM2Mjg4MjkyODk2NTc2OTEyNw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=34euCd2CyR0Q7kNvwE3Tkaw&_nc_oc=AdnRqxJOCnGJ_6pT3DIL4tTh1JigvPCOwQYfQvAS4BtvWgXfWgE1pyWntb7v3_rJjwk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af8NspVhwICiMoVC4_RLBKGzZ1NQpCsh9W3cF7-Bs8-btA&oe=6A3AAF2A', title: '"Cibernética"', year: '2024', likes: Math.floor(Math.random() * 100) + 20 },
+            { url: 'https://scontent-scl3-1.cdninstagram.com/v/t51.82787-15/486662043_18116720629359848_2472158068067822770_n.webp?_nc_cat=105&ig_cache_key=MzU3MTcyODUyNDkyODYwNzk2Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=LlObJ5yZMWMQ7kNvwGlP4RO&_nc_oc=AdmQjnYFOGsMTHg6s4fZv7iGgiYLbHwP_5WoyOVcGvLKHyqT-nAAk4G4ekBvY1WN4l4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-scl3-1.cdninstagram.com&_nc_gid=U73EyMptIpxi3wr8FmvU4Q&_nc_ss=7a22e&oh=00_Af-Y9_t-G3Qvqswq_3fqCj1sJXmsO-hAdKdi0_GeYf1iJg&oe=6A3A9FE2', title: '"Realidad Virtual"', year: '2025', likes: Math.floor(Math.random() * 100) + 20 }
+        ];
+
+        // Combinar todas las obras
+        let todasLasObras = [...obras, ...obrasExtra, ...obrasExtra, ...obrasExtra];
+        let indiceActual = 0;
+        const gallery = document.getElementById('gallery');
+        const loader = document.getElementById('loader');
+        let cargando = false;
+
+        function cargarObras() {
+            if (cargando) return;
+            cargando = true;
+            loader.style.display = 'block';
+
+            setTimeout(() => {
+                const itemsACargar = 3;
+                for (let i = 0; i < itemsACargar; i++) {
+                    const obra = todasLasObras[indiceActual % todasLasObras.length];
+                    indiceActual++;
+
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.innerHTML = `
+                        <img src="${obra.url}" alt="${obra.title}" loading="lazy">
+                        <div class="info">
+                            <span class="title">${obra.title}</span>
+                            <span class="year">${obra.year}</span>
+                            <span class="likes">❤️ ${obra.likes}</span>
+                        </div>
+                    `;
+                    gallery.appendChild(item);
+                }
+
+                cargando = false;
+                loader.style.display = 'none';
+            }, 600);
+        }
+
+        // Cargar primeras obras
+        cargarObras();
+
+        // ===== SCROLL INFINITO =====
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 600) {
+                cargarObras();
+            }
+        });
 
         // ===== EFECTO MATRIX (canvas) =====
         const canvas = document.createElement('canvas');
@@ -358,53 +459,8 @@
             canvas.height = window.innerHeight;
         });
 
-        // ===== CALAVERAS FLOTANTES =====
-        function createSkulls() {
-            const skulls = ['☠', '💀', '☠', '💀', '☠', '💀'];
-            const container = document.createElement('div');
-            container.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 0;
-                pointer-events: none;
-                overflow: hidden;
-                opacity: 0.2;
-            `;
-            
-            skulls.forEach((skull, index) => {
-                const el = document.createElement('div');
-                el.textContent = skull;
-                el.style.cssText = `
-                    position: absolute;
-                    color: rgba(0, 255, 0, 0.02);
-                    font-size: ${40 + Math.random() * 40}px;
-                    left: ${Math.random() * 90}%;
-                    animation: floatSkull ${15 + Math.random() * 15}s infinite linear;
-                    animation-delay: ${index * 2.5}s;
-                `;
-                container.appendChild(el);
-            });
-            
-            document.body.prepend(container);
-
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes floatSkull {
-                    0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
-                    10% { opacity: 1; }
-                    90% { opacity: 1; }
-                    100% { transform: translateY(calc(100vh + 100px)) rotate(720deg); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        createSkulls();
-
-        console.log('☠ SATORY977 - SISTEMA OPERATIVO: CYBERPUNK 2077 ☠');
-        console.log('💀 BIENVENIDO A MI DOMINIO 💀');
+        console.log('📷 GALERÍA DE SATORY977');
+        console.log('💀 SCROLL INFINITO ACTIVADO');
     </script>
 </body>
 </html>
