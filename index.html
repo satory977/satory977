@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ş̴̙̙̬̹͚̦̯͖̫̭̲̼̰̇̆͌̓́̈͛́͌̌̊̐͂̒̒̾̑̿͘͝͠ą̵̤͎̬͍̖̍͊̓̅͋̎̀̇͗̕͝t̸̢̟̫̥͈̝̘̙̽̾̿̎̏́͂̀̃̓́̒̾̏͋̈̾̔̀͑̕͘͝ò̵͖̩̥̻̣͎̳̱̤͚̖͌̓̉͐̄̍̎̀̂́̃̉̄̉̄̓̑̂̓̈́̀͗̂̐͘̚͜͝͝͠ͅr̶̢̢̨̛̰̺͎̩͍̰̱̯͔͓̳̩͙̯̦̃́͛̀̓̈́̈́͆́̓̐̑͂̍̕͜͝ͅẙ̵̨̨̹̮̲͕̟͔̜̲͇̖̲͙͍͉̩̥̹̼̝̐͊͠9̵̯̜͖̱͖̠̠̗̞̲̼̣͍̭̝̏̈̅͒̈́̐̍͂̀̓̓̍̽͐̐̚͠͠ͅ7̴̢̡̳̳̤͔̬͕͇̞͇͙̞͔̤̪̠̞̝͓̲͚̬͖͙̪̠̭̫̊̏͜7̵̧͚̣̙̳̻̥̻͔̲̲͕̀͑̊͒̃͛͛̔̂̈́̇̈́̆̾̈̐̀̂̚͝͝</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NTlyN3IzOGV3eXlqeXQ3Z285NWFqdDJ1dGNsOWJ4ODhrYWRzdzJ0YiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l3V0yA9zHe5m29sxW/giphy.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Overlay más transparente para que se vea el GIF */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== MENÚ CENTRAL TRANSPARENTE ===== */
+        .menu-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 12px;
+            padding: 40px 50px;
+            max-width: 450px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 60px rgba(0, 255, 0, 0.05),
+                inset 0 0 60px rgba(0, 255, 0, 0.02);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .menu-container:hover {
+            border-color: rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 80px rgba(0, 255, 0, 0.08);
+        }
+
+        .menu-container h1 {
+            color: #fff;
+            font-size: 1.2em;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            text-shadow: 
+                2px 2px 0 #00ff00,
+                -2px -2px 0 #ff00ff,
+                0 0 30px rgba(0, 255, 0, 0.2);
+            animation: glitch 3s infinite;
+            word-break: break-word;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+        }
+
+        .menu-container h1::after {
+            content: ' ☠';
+            color: #ff00ff;
+            opacity: 0.3;
+            animation: skullPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes skullPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ===== ENLACES DEL MENÚ ===== */
+        .menu-links {
+            list-style: none;
+            margin: 25px 0 30px 0;
+        }
+
+        .menu-links li {
+            margin-bottom: 8px;
+        }
+
+        .menu-links li a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            padding: 12px 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .menu-links li a:hover {
+            color: #00ff00;
+            border-color: rgba(0, 255, 0, 0.3);
+            background: rgba(0, 255, 0, 0.08);
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .menu-links li a.active {
+            color: #00ff00;
+            border-color: rgba(255, 0, 255, 0.25);
+            background: rgba(255, 0, 255, 0.06);
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+
+        .menu-links li a::before {
+            content: '☠ ';
+            opacity: 0.3;
+            transition: 0.3s;
+        }
+
+        .menu-links li a:hover::before {
+            opacity: 1;
+            color: #ff00ff;
+        }
+
+        .menu-links li a.active::before {
+            content: '💀 ';
+            opacity: 1;
+        }
+
+        /* ===== SEPARADOR ===== */
+        .menu-divider {
+            border: none;
+            border-top: 1px solid rgba(0, 255, 0, 0.1);
+            margin: 15px 0;
+        }
+
+        /* ===== RELOJ EN EL MENÚ ===== */
+        .menu-clock {
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 255, 0, 0.1);
+        }
+
+        .menu-clock .time {
+            font-size: 1.4em;
+            color: #00ff00;
+            text-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .menu-clock .date {
+            font-size: 0.55em;
+            color: #888;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .menu-clock .counter {
+            font-size: 0.5em;
+            color: #555;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        .menu-clock .counter span {
+            color: #00ff00;
+            opacity: 0.4;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 0, 0.4);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .menu-container {
+                padding: 30px 25px;
+                margin: 20px;
+                border-radius: 8px;
+                background: rgba(0, 0, 0, 0.55);
+            }
+
+            .menu-container h1 {
+                font-size: 0.9em;
+                letter-spacing: 2px;
+            }
+
+            .menu-links li a {
+                font-size: 0.7em;
+                padding: 10px 15px;
+                letter-spacing: 1.5px;
+            }
+
+            .menu-clock .time {
+                font-size: 1.1em;
+                letter-spacing: 2px;
+            }
+
+            .menu-clock .date {
+                font-size: 0.45em;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .menu-container {
+                padding: 20px 15px;
+                margin: 10px;
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+            .menu-container h1 {
+                font-size: 0.7em;
+            }
+
+            .menu-links li a {
+                font-size: 0.6em;
+                padding: 8px 12px;
+                letter-spacing: 1px;
+            }
+
+            .menu-clock .time {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== MENÚ CENTRAL TRANSPARENTE ===== -->
+    <div class="menu-container">
+        <h1>SATORY 977</h1>
+
+        <ul class="menu-links">
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="#">Sobre Mí</a></li>
+            <li><a href="#">Portafolio</a></li>
+            <li><a href="#">Blog</a></li>
+            <hr class="menu-divider">
+            <li><a href="galeria.html">📷 Galería</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+
+        <!-- ===== RELOJ ===== -->
+        <div class="menu-clock">
+            <div class="time" id="clock">00:00:00</div>
+            <div class="date" id="date">LOADING...</div>
+            <div class="counter">VISITAS: <span id="visitorCounter">0</span></div>
+        </div>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ===== RELOJ =====
+        function updateClock() {
+            const now = new Date();
+            const time = now.toTimeString().split(' ')[0];
+            const date = now.toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            document.getElementById('clock').textContent = time;
+            document.getElementById('date').textContent = date.toUpperCase();
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // ===== CONTADOR =====
+        document.getElementById('visitorCounter').textContent = Math.floor(Math.random() * 1000) + 100;
+
+        // ===== EFECTO MATRIX (canvas) =====
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.zIndex = '0';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.opacity = '0.06';
+        document.body.prepend(canvas);
+
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ===== CALAVERAS FLOTANTES =====
+        function createSkulls() {
+            const skulls = ['☠', '💀', '☠', '💀', '☠', '💀'];
+            const container = document.createElement('div');
+            container.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+                pointer-events: none;
+                overflow: hidden;
+                opacity: 0.2;
+            `;
+            
+            skulls.forEach((skull, index) => {
+                const el = document.createElement('div');
+                el.textContent = skull;
+                el.style.cssText = `
+                    position: absolute;
+                    color: rgba(0, 255, 0, 0.02);
+                    font-size: ${40 + Math.random() * 40}px;
+                    left: ${Math.random() * 90}%;
+                    animation: floatSkull ${15 + Math.random() * 15}s infinite linear;
+                    animation-delay: ${index * 2.5}s;
+                `;
+                container.appendChild(el);
+            });
+            
+            document.body.prepend(container);
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floatSkull {
+                    0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+                    10% { opacity: 1; }
+                    90% { opacity: 1; }
+                    100% { transform: translateY(calc(100vh + 100px)) rotate(720deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        createSkulls();
+
+        console.log('☠ SATORY977 - SISTEMA OPERATIVO: CYBERPUNK 2077 ☠');
+        console.log('💀 BIENVENIDO A MI DOMINIO 💀');
+    </script>
+</body>
+</html>
